@@ -1,48 +1,130 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Temperature Registrate - La Terrazza & Molo Sedici</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Registrate - La Terrazza</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f8f3;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      padding: 20px;
+    }
+    .logo {
+      max-width: 200px;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 1.2rem;
+      margin: 10px 0;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+    #buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .tab-button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .tab-button:hover {
+      background-color: #555;
+    }
+    table {
+      width: 90%;
+      max-width: 600px;
+      margin: 0 auto 40px auto;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #00695c;
+      color: white;
+    }
+    footer {
+      font-size: 0.8rem;
+      color: #333;
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <img src="https://laterrazzabistrot.it/wp-content/uploads/2024/04/logo-1.png" alt="Logo La Terrazza" class="logo"/>
+    <img src="https://laterrazzabistrot.it/wp-content/uploads/2024/04/logo-1.png" alt="Logo La Terrazza" class="logo">
     <h1>Sistema di rilevamento delle temperature automatizzato Frigo e Congelatori</h1>
   </header>
 
-  <main>
-    <div class="button-container">
-      <button onclick="showTable('frigo10')">Frigo (10:00)</button>
-      <button onclick="showTable('frigo16')">Frigo (16:00)</button>
-      <button onclick="showTable('congel10')">Congelatori (10:00)</button>
-      <button onclick="showTable('congel16')">Congelatori (16:00)</button>
-    </div>
+  <div id="buttons">
+    <button class="tab-button" onclick="mostraTabella('frigo-10')">Frigo (10:00)</button>
+    <button class="tab-button" onclick="mostraTabella('frigo-16')">Frigo (16:00)</button>
+    <button class="tab-button" onclick="mostraTabella('congel-10')">Congelatori (10:00)</button>
+    <button class="tab-button" onclick="mostraTabella('congel-16')">Congelatori (16:00)</button>
+  </div>
 
-    <section id="tables">
-      <div id="frigo10" class="data-table hidden">
-        <h2>Frigo - Rilevamento ore 10:00</h2>
-        <table id="tableFrigo10"><thead></thead><tbody></tbody></table>
-      </div>
-      <div id="frigo16" class="data-table hidden">
-        <h2>Frigo - Rilevamento ore 16:00</h2>
-        <table id="tableFrigo16"><thead></thead><tbody></tbody></table>
-      </div>
-      <div id="congel10" class="data-table hidden">
-        <h2>Congelatori - Rilevamento ore 10:00</h2>
-        <table id="tableCongel10"><thead></thead><tbody></tbody></table>
-      </div>
-      <div id="congel16" class="data-table hidden">
-        <h2>Congelatori - Rilevamento ore 16:00</h2>
-        <table id="tableCongel16"><thead></thead><tbody></tbody></table>
-      </div>
-    </section>
-  </main>
+  <section id="frigo-10" class="tabella">
+    <h2>Frigo - Rilevamento ore 10:00</h2>
+    <table>
+      <thead>
+        <tr><th>Data</th><th>Dispositivo</th><th>Temperatura</th></tr>
+      </thead>
+      <tbody id="frigo-10-body"></tbody>
+    </table>
+  </section>
+
+  <section id="frigo-16" class="tabella" style="display: none">
+    <h2>Frigo - Rilevamento ore 16:00</h2>
+    <table>
+      <thead>
+        <tr><th>Data</th><th>Dispositivo</th><th>Temperatura</th></tr>
+      </thead>
+      <tbody id="frigo-16-body"></tbody>
+    </table>
+  </section>
+
+  <section id="congel-10" class="tabella" style="display: none">
+    <h2>Congelatori - Rilevamento ore 10:00</h2>
+    <table>
+      <thead>
+        <tr><th>Data</th><th>Dispositivo</th><th>Temperatura</th></tr>
+      </thead>
+      <tbody id="congel-10-body"></tbody>
+    </table>
+  </section>
+
+  <section id="congel-16" class="tabella" style="display: none">
+    <h2>Congelatori - Rilevamento ore 16:00</h2>
+    <table>
+      <thead>
+        <tr><th>Data</th><th>Dispositivo</th><th>Temperatura</th></tr>
+      </thead>
+      <tbody id="congel-16-body"></tbody>
+    </table>
+  </section>
 
   <footer>
-    <p>&copy; 2025 La Terrazza Bistrot & Molo Sedici - Castiglione della Pescaia</p>
+    &copy; 2025 La Terrazza Bistrot & Molo Sedici - Castiglione della Pescaia
   </footer>
 
   <script src="script.js"></script>
