@@ -1,55 +1,49 @@
-
 body {
   font-family: sans-serif;
+  background-color: #fefef7;
   margin: 0;
-  background: #f8f8f2;
-  color: #222;
+  padding: 0;
   text-align: center;
 }
 .logo {
-  width: 120px;
-  margin: 20px auto 10px;
-  display: block;
+  max-width: 180px;
+  margin: 20px auto;
 }
 header h1 {
-  margin: 0;
-  font-size: 1.4em;
-}
-.subtitle {
-  margin: 0;
-  font-style: italic;
-}
-.anomalie {
-  color: #800000;
-  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 0 10px 20px;
 }
 .buttons {
-  margin: 20px;
+  margin-bottom: 20px;
 }
 button {
-  margin: 5px;
-  padding: 10px 15px;
-  background: #333;
+  background-color: #2f4f4f;
   color: white;
+  padding: 10px 15px;
+  margin: 5px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #406060;
 }
 table {
+  margin: 0 auto 30px;
+  border-collapse: collapse;
   width: 90%;
   max-width: 700px;
-  margin: 20px auto;
-  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
 }
 thead {
-  background: #195B4A;
+  background-color: #215c4f;
   color: white;
-}
-td, th {
-  padding: 10px;
-  border: 1px solid #ccc;
 }
 footer {
   margin: 30px 0;
-  font-size: 0.9em;
-  color: #444;
+  font-size: 0.9rem;
+  color: #555;
 }
