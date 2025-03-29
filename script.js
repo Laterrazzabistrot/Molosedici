@@ -8,8 +8,23 @@ const sectionNames = {
   congel_16: "Congelatori - Rilevamento ore 16:00",
 };
 
+function isFridge(name) {
+  return (
+    name.toLowerCase().includes("frigo") ||
+    name.toLowerCase().includes("cella")
+  );
+}
+
+function isFreezer(name) {
+  return name.toLowerCase().includes("congel");
+}
+
 function filterData(type) {
   document.getElementById("sectionTitle").textContent = sectionNames[type];
+
+  const is10 = type.includes("10");
+  const isFrigo = type.includes("frigo");
+
   fetch(`https://opensheet.elk.sh/${SHEET_ID}/${SHEET_NAME}`)
     .then(res => res.json())
     .then(data => {
@@ -17,26 +32,21 @@ function filterData(type) {
       tbody.innerHTML = "";
 
       data.forEach(row => {
-        const data = row["Data"];
-        Object.keys(row).forEach(key => {
-          if (key === "Data" || row[key] === "") return;
+        Object.entries(row).forEach(([device, value]) => {
+          const ora = device.includes("(10:00)") ? "10" : device.includes("(16:00)") ? "16" : "";
+          const dataRilevamento = row["Data"];
 
-          const isCongelatore = key.includes("Congelatore");
-          const isFrigo = !isCongelatore;
-
-          const ora10 = key.includes("(10:00)");
-          const ora16 = key.includes("(16:00)");
-
-          if ((type === "frigo_10" && isFrigo && ora10) ||
-              (type === "frigo_16" && isFrigo && ora16) ||
-              (type === "congel_10" && isCongelatore && ora10) ||
-              (type === "congel_16" && isCongelatore && ora16)) {
-
+          if (
+            value &&
+            ((isFrigo && isFridge(device)) || (!isFrigo && isFreezer(device))) &&
+            ora === (is10 ? "10" : "16")
+          ) {
             const tr = document.createElement("tr");
             tr.innerHTML = `
-              <td>${data}</td>
-              <td>${key}</td>
-              <td>${row[key]}°C</td>`;
+              <td>${dataRilevamento}</td>
+              <td>${device}</td>
+              <td>${value}°C</td>
+            `;
             tbody.appendChild(tr);
           }
         });
@@ -44,4 +54,5 @@ function filterData(type) {
     });
 }
 
+// Carica Frigo 10:00 all'avvio
 window.onload = () => filterData("frigo_10");
