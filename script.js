@@ -1,4 +1,3 @@
-
 const SHEET_ID = "1QpY1sSVC7MSs8lwgxjnpr2Jpzq-ZbVwFdr6Genrul5E";
 const SHEET_NAME = "Temperature";
 
