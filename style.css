@@ -1,42 +1,55 @@
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #fefef7;
-  text-align: center;
+  font-family: sans-serif;
   margin: 0;
-  padding: 0;
-}
-header {
-  padding: 20px 0;
+  background: #f8f8f2;
+  color: #222;
+  text-align: center;
 }
 .logo {
   width: 120px;
+  margin: 20px auto 10px;
+  display: block;
 }
-.button-container {
-  margin: 20px auto;
+header h1 {
+  margin: 0;
+  font-size: 1.4em;
 }
-.button-container button {
-  margin: 0 10px;
-  padding: 10px 20px;
+.subtitle {
+  margin: 0;
+  font-style: italic;
+}
+.anomalie {
+  color: #800000;
   font-weight: bold;
-  background-color: #2f3e38;
+}
+.buttons {
+  margin: 20px;
+}
+button {
+  margin: 5px;
+  padding: 10px 15px;
+  background: #333;
   color: white;
   border: none;
   border-radius: 6px;
-  cursor: pointer;
-}
-main {
-  margin: 20px;
 }
 table {
-  margin: auto;
+  width: 90%;
+  max-width: 700px;
+  margin: 20px auto;
   border-collapse: collapse;
-  width: 80%;
 }
-th, td {
-  border: 1px solid #ccc;
-  padding: 10px;
-}
-th {
-  background-color: #1f5a46;
+thead {
+  background: #195B4A;
   color: white;
+}
+td, th {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+footer {
+  margin: 30px 0;
+  font-size: 0.9em;
+  color: #444;
 }

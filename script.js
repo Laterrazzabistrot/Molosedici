@@ -1,5 +1,13 @@
-const SHEET_ID = "1QpY1sSVC7MSs8lwgxjnpr2Jpzq-ZbVwFdr6Genrul5E";
+
+const SHEET_ID = "1QpY1sSVC7MSs8Iwgxjnpr2Jpzq-ZbVwFdr6Genrul5E";
 const SHEET_NAME = "Temperature";
+
+const columnsMap = {
+  frigo_10: [1, 3, 5, 7, 9, 11, 13, 15],
+  frigo_16: [2, 4, 6, 8, 10, 12, 14, 16],
+  congel_10: [17, 19, 21, 23, 25, 27, 29, 31, 33, 35],
+  congel_16: [18, 20, 22, 24, 26, 28, 30, 32, 34, 36],
+};
 
 const sectionNames = {
   frigo_10: "Frigo - Rilevamento ore 10:00",
@@ -8,59 +16,31 @@ const sectionNames = {
   congel_16: "Congelatori - Rilevamento ore 16:00",
 };
 
-function isFridge(name) {
-  const n = name.toLowerCase();
-  return n.includes("frigo") || n.includes("cella");
-}
-
-function isFreezer(name) {
-  return name.toLowerCase().includes("congel");
-}
-
 function filterData(type) {
   document.getElementById("sectionTitle").textContent = sectionNames[type];
-
-  const is10 = type.includes("10");
-  const isFrigo = type.includes("frigo");
+  const indices = columnsMap[type];
 
   fetch(`https://opensheet.elk.sh/${SHEET_ID}/${SHEET_NAME}`)
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       const tbody = document.getElementById("tableBody");
       tbody.innerHTML = "";
-
-      if (!data || data.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="3">Nessun dato disponibile</td></tr>`;
-        return;
-      }
-
-      data.forEach(row => {
-        const dataRilevamento = row["Data"] || row["data"];
-        Object.entries(row).forEach(([key, value]) => {
-          const lowerKey = key.toLowerCase();
-          const orario = lowerKey.includes("10:00") ? "10" :
-                         lowerKey.includes("16:00") ? "16" : "";
-
-          if (
-            value &&
-            ((isFrigo && isFridge(key)) || (!isFrigo && isFreezer(key))) &&
-            orario === (is10 ? "10" : "16")
-          ) {
+      data.forEach((row) => {
+        indices.forEach((index) => {
+          const keys = Object.keys(row);
+          const name = keys[index];
+          const value = row[name];
+          if (value) {
             const tr = document.createElement("tr");
             tr.innerHTML = `
-              <td>${dataRilevamento}</td>
-              <td>${key}</td>
+              <td>${row[keys[0]]}</td>
+              <td>${name}</td>
               <td>${value}°C</td>
             `;
             tbody.appendChild(tr);
           }
         });
       });
-    })
-    .catch(error => {
-      console.error("Errore nel caricamento dei dati:", error);
-      const tbody = document.getElementById("tableBody");
-      tbody.innerHTML = `<tr><td colspan="3">Errore nel caricamento dei dati</td></tr>`;
     });
 }
 

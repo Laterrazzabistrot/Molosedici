@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Temperature Registrate - La Terrazza</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f8f8f2" />
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png" />
+  <title>Temperature Registrate</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <img src="https://laterrazzabistrot.it/wp-content/uploads/2024/04/logo-1.png" alt="Logo La Terrazza" class="logo">
+    <img src="logo.png" alt="Logo La Terrazza" class="logo" />
     <h1>Temperature Registrate – Mese Corrente</h1>
+    <p class="subtitle">Sistema di rilevamento automatizzato e centralizzato.</p>
+    <p class="anomalie">Anomalie del mese corrente: <span>0</span></p>
   </header>
 
-  <div class="button-container">
+  <div class="buttons">
     <button onclick="filterData('frigo_10')">Frigo (10:00)</button>
     <button onclick="filterData('frigo_16')">Frigo (16:00)</button>
     <button onclick="filterData('congel_10')">Congelatori (10:00)</button>
@@ -25,12 +31,14 @@
       <thead>
         <tr><th>Data</th><th>Dispositivo</th><th>Temperatura</th></tr>
       </thead>
-      <tbody id="tableBody"></tbody>
+      <tbody id="tableBody">
+        <tr><td colspan="3">Caricamento dati...</td></tr>
+      </tbody>
     </table>
   </main>
 
   <footer>
-    <p>&copy; 2025 La Terrazza Bistrot & Molo Sedici - Castiglione della Pescaia</p>
+    © 2025 La Terrazza Bistrot & Molo Sedici - Castiglione della Pescaia
   </footer>
 
   <script src="script.js"></script>

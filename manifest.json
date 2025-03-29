@@ -1,0 +1,16 @@
+
+{
+  "name": "Temperature Molo Sedici",
+  "short_name": "TempMolo16",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f8f8f2",
+  "theme_color": "#195B4A",
+  "icons": [
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
+}
