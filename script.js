@@ -9,7 +9,8 @@ const sectionNames = {
 };
 
 function isFridge(name) {
-  return name.toLowerCase().includes("frigo") || name.toLowerCase().includes("cella");
+  const n = name.toLowerCase();
+  return n.includes("frigo") || n.includes("cella");
 }
 
 function isFreezer(name) {
@@ -34,21 +35,21 @@ function filterData(type) {
       }
 
       data.forEach(row => {
-        Object.entries(row).forEach(([device, value]) => {
-          if (device.toLowerCase().includes("data")) return;
-
-          const orario = device.includes("10:00") ? "10" : device.includes("16:00") ? "16" : "";
-          const dataRilevamento = row["Data"];
+        const dataRilevamento = row["Data"] || row["data"];
+        Object.entries(row).forEach(([key, value]) => {
+          const lowerKey = key.toLowerCase();
+          const orario = lowerKey.includes("10:00") ? "10" :
+                         lowerKey.includes("16:00") ? "16" : "";
 
           if (
             value &&
-            ((isFrigo && isFridge(device)) || (!isFrigo && isFreezer(device))) &&
+            ((isFrigo && isFridge(key)) || (!isFrigo && isFreezer(key))) &&
             orario === (is10 ? "10" : "16")
           ) {
             const tr = document.createElement("tr");
             tr.innerHTML = `
               <td>${dataRilevamento}</td>
-              <td>${device}</td>
+              <td>${key}</td>
               <td>${value}°C</td>
             `;
             tbody.appendChild(tr);
@@ -63,5 +64,4 @@ function filterData(type) {
     });
 }
 
-// Carica Frigo 10:00 all'avvio
 window.onload = () => filterData("frigo_10");
