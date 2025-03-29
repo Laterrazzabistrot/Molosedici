@@ -19,6 +19,7 @@ function isFreezer(name) {
 
 function filterData(type) {
   document.getElementById("sectionTitle").textContent = sectionNames[type];
+
   const is10 = type.includes("10");
   const isFrigo = type.includes("frigo");
 
