@@ -2,44 +2,82 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Genera PDF Temperature</title>
+  <title>Generatore PDF Temperature HACCP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     body {
-      font-family: sans-serif;
-      padding: 30px;
-      background-color: #f9f9f9;
-    }
-    h1 {
+      font-family: "Segoe UI", sans-serif;
+      padding: 40px;
+      background-color: #f0f4f8;
       color: #333;
+      max-width: 800px;
+      margin: auto;
     }
+
+    h1 {
+      font-size: 28px;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+
     input[type="email"] {
       padding: 10px;
       font-size: 16px;
-      width: 300px;
-      margin-right: 10px;
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
     }
+
     button {
-      padding: 10px 20px;
+      padding: 12px 20px;
       font-size: 16px;
-      margin-top: 10px;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
+      margin-right: 10px;
+      margin-top: 10px;
+      transition: background-color 0.2s ease-in-out;
     }
+
+    button:first-of-type {
+      background-color: #27ae60;
+      color: white;
+    }
+
+    button:last-of-type {
+      background-color: #2980b9;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
     .msg {
       margin-top: 20px;
       font-weight: bold;
     }
   </style>
 </head>
+
 <body>
+  <h1>📄 Generatore PDF Temperature HACCP</h1>
 
-  <h1>📄 Generatore PDF Temperature</h1>
-
-  <p>Vuoi scaricare il report aggiornato o riceverlo via email?</p>
+  <p>Vuoi scaricare subito il report aggiornato al mese corrente o riceverlo direttamente via email?</p>
 
   <button onclick="scaricaPdf()">📥 Scarica PDF aggiornato</button>
+
   <br><br>
 
-  <input type="email" id="emailUtente" placeholder="Inserisci la tua email (opzionale)">
+  <input type="email" id="emailUtente" placeholder="Inserisci la tua email (facoltativo)">
+  <br>
   <button onclick="inviaPdf()">📩 Invia PDF via email</button>
 
   <p class="msg" id="messaggio"></p>
@@ -52,11 +90,13 @@
     }
 
     function inviaPdf() {
-      const email = document.getElementById("emailUtente").value;
+      const email = document.getElementById("emailUtente").value.trim();
       const messaggio = document.getElementById("messaggio");
 
+      messaggio.textContent = ""; // reset
+
       if (!email || !email.includes("@")) {
-        messaggio.textContent = "❌ Inserisci una email valida!";
+        messaggio.textContent = "❌ Inserisci un indirizzo email valido!";
         return;
       }
 
@@ -66,11 +106,10 @@
           messaggio.textContent = `✅ ${text}`;
         })
         .catch(error => {
-          console.error(error);
+          console.error("Errore:", error);
           messaggio.textContent = "❌ Errore durante l'invio del PDF.";
         });
     }
   </script>
-
 </body>
 </html>
