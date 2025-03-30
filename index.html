@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -5,47 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Temperature Registrate – Mese Corrente</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    input[type="email"] {
-      padding: 10px;
-      font-size: 16px;
-      width: 100%;
-      max-width: 400px;
-      margin-top: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    .pdf-buttons {
-      margin: 30px 0;
-    }
-
-    .pdf-buttons button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin-right: 10px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.2s ease-in-out;
-    }
-
-    .pdf-buttons button:first-of-type {
-      background-color: #27ae60;
-      color: white;
-    }
-
-    .pdf-buttons button:last-of-type {
-      background-color: #2980b9;
-      color: white;
-    }
-
-    .msg {
-      font-weight: bold;
-      margin-top: 10px;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -58,7 +18,6 @@
       <button onclick="filterData('congel_16')">Congelatori (16:00)</button>
     </div>
   </header>
-
   <main>
     <h2 id="sectionTitle">Frigo - Rilevamento ore 10:00</h2>
     <table>
@@ -68,165 +27,9 @@
       <tbody id="tableBody"></tbody>
     </table>
   </main>
-
-  <!-- Sezione PDF -->
-  <!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Temperature Registrate – Mese Corrente</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    input[type="email"] {
-      padding: 10px;
-      font-size: 16px;
-      width: 100%;
-      max-width: 400px;
-      margin-top: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    .pdf-buttons {
-      margin: 30px 0;
-    }
-
-    .pdf-buttons button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin-right: 10px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.2s ease-in-out;
-    }
-
-    .pdf-buttons button:first-of-type {
-      background-color: #27ae60;
-      color: white;
-    }
-
-    .pdf-buttons button:last-of-type {
-      background-color: #2980b9;
-      color: white;
-    }
-
-    .msg {
-      font-weight: bold;
-      margin-top: 10px;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <img src="https://laterrazzabistrot.it/wp-content/uploads/2024/04/logo-1.png" alt="Logo" class="logo" />
-    <h1>Sistema di rilevamento delle temperature automatizzato e centralizzato in base alla normativa HACCP Frigo e Congelatori</h1>
-    <div class="buttons">
-      <button onclick="filterData('frigo_10')">Frigo (10:00)</button>
-      <button onclick="filterData('frigo_16')">Frigo (16:00)</button>
-      <button onclick="filterData('congel_10')">Congelatori (10:00)</button>
-      <button onclick="filterData('congel_16')">Congelatori (16:00)</button>
-    </div>
-  </header>
-
-  <main>
-    <h2 id="sectionTitle">Frigo - Rilevamento ore 10:00</h2>
-    <table>
-      <thead>
-        <tr><th>Data</th><th>Dispositivo</th><th>Temperatura</th></tr>
-      </thead>
-      <tbody id="tableBody"></tbody>
-    </table>
-  </main>
-
-  <!-- Sezione PDF -->
-  <!-- 
-  <div class="pdf-buttons">
-    <button onclick="scaricaPdf()">📥 Scarica PDF aggiornato</button><br>
-    <input type="email" id="emailUtente" placeholder="Inserisci la tua email">
-    <button onclick="inviaPdfPerEmail()">📩 Ricevi PDF via email</button>
-    <p class="msg" id="messaggio"></p>
-  </div>
-  --> 
   <footer>
     <p>© 2025 La Terrazza Bistrot & Molo Sedici - Castiglione della Pescaia</p>
   </footer>
-<!-- 
   <script src="script.js"></script>
-  <script>
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbyP09JF9JSAygDkMZSYIj0RTqLS4kaHleGPQd-uspeANWcy3T_iiLCZMelEFG78hyVW/exec;
-
-    function scaricaPdf() {
-      window.open(scriptUrl, "_blank");
-    }
-
-    function inviaPdfPerEmail() {
-      const email = document.getElementById("emailUtente").value.trim();
-      const messaggio = document.getElementById("messaggio");
-
-      messaggio.textContent = ""; // reset messaggio
-
-      if (!email || !email.includes("@")) {
-        messaggio.textContent = "❌ Inserisci un indirizzo email valido!";
-        return;
-      }
-
-      fetch(`${scriptUrl}?email=${encodeURIComponent(email)}`)
-        .then(response => response.text())
-        .then(text => {
-          messaggio.textContent = `✅ ${text}`;
-        })
-        .catch(error => {
-          console.error("Errore:", error);
-          messaggio.textContent = "❌ Errore durante l'invio del PDF.";
-        });
-    }
-  </script>
-</body>
-</html>
-  <!--
-  <div class="pdf-buttons">
-    <button onclick="scaricaPdf()">📥 Scarica PDF aggiornato</button><br>
-    <input type="email" id="emailUtente" placeholder="Inserisci la tua email">
-    <button onclick="inviaPdfPerEmail()">📩 Ricevi PDF via email</button>
-    <p class="msg" id="messaggio"></p>
-  </div>
-
-  <footer>
-    <p>© 2025 La Terrazza Bistrot & Molo Sedici - Castiglione della Pescaia</p>
-  </footer>
-
-  <script src="script.js"></script>
-  <script>
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbyP09JF9JSAygDkMZSYIj0RTqLS4kaHleGPQd-uspeANWcy3T_iiLCZMelEFG78hyVW/exec;
-
-    function scaricaPdf() {
-      window.open(scriptUrl, "_blank");
-    }
-
-    function inviaPdfPerEmail() {
-      const email = document.getElementById("emailUtente").value.trim();
-      const messaggio = document.getElementById("messaggio");
-
-      messaggio.textContent = ""; // reset messaggio
-
-      if (!email || !email.includes("@")) {
-        messaggio.textContent = "❌ Inserisci un indirizzo email valido!";
-        return;
-      }
-
-      fetch(`${scriptUrl}?email=${encodeURIComponent(email)}`)
-        .then(response => response.text())
-        .then(text => {
-          messaggio.textContent = `✅ ${text}`;
-        })
-        .catch(error => {
-          console.error("Errore:", error);
-          messaggio.textContent = "❌ Errore durante l'invio del PDF.";
-        });
-    }
-  </script>
 </body>
 </html>
