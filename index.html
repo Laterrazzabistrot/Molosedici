@@ -1,38 +1,44 @@
-
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Temperature Registrate – Mese Corrente</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Storico temperature HACCP – La Terrazza & Molo Sedici</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="https://laterrazzabistrot.it/wp-content/uploads/2024/04/logo-1.png" alt="Logo" class="logo" />
-    <h1>Sistema di rilevamento delle temperature automatizzato e centralizzato secondo la normativa HACCP Frigo e Congelatori</h1>
-    <p style="colore:#800020;font-weig:bold;">Criticità registrate<br>Questo mese: 0
-    </p>
-    <div class="buttons">
-      <button onclick="filterData('frigo_10')">Frigo (10:00)</button>
-      <button onclick="filterData('frigo_16')">Frigo (16:00)</button>
-      <button onclick="filterData('congel_10')">Congelatori (10:00)</button>
-      <button onclick="filterData('congel_16')">Congelatori (16:00)</button>
-    </div>
-  </header>
-  <main>
-    <h2 id="sectionTitle">Frigo - Rilevamento ore 10:00</h2>
+<header>
+  <img src="https://laterrazzabistrot.it/wp-content/uploads/2024/04/logo-1.png" alt="Logo La Terrazza" class="logo">
+  <h1>Sistema di rilevamento delle temperature automatizzato e centralizzato secondo la normativa HACCP – Frigo e Congelatori</h1>
+  <p class="criticita">Criticità registrate<br>Questo mese: 0</p>
+  <div class="buttons" aria-label="Tipo di rilevamento">
+    <button data-type="frigo_10" onclick="filterData('frigo_10')">Frigo (10:00)</button>
+    <button data-type="frigo_16" onclick="filterData('frigo_16')">Frigo (16:00)</button>
+    <button data-type="congel_10" onclick="filterData('congel_10')">Congelatori (10:00)</button>
+    <button data-type="congel_16" onclick="filterData('congel_16')">Congelatori (16:00)</button>
+  </div>
+</header>
+<main>
+  <nav class="period-controls" aria-label="Periodo di consultazione">
+    <button id="previousMonth" type="button">← Mese precedente</button>
+    <label for="monthSelect">Mese</label>
+    <select id="monthSelect" aria-label="Seleziona mese"></select>
+    <label for="yearSelect">Anno</label>
+    <select id="yearSelect" aria-label="Seleziona anno"></select>
+    <button id="nextMonth" type="button">Mese successivo →</button>
+    <button id="todayButton" type="button">Torna a oggi (ultimi 30 giorni)</button>
+  </nav>
+  <p id="periodLabel" class="period-label"></p>
+  <h2 id="sectionTitle">Frigo - Rilevamento ore 10:00</h2>
+  <p id="dataStatus" role="status" aria-live="polite"></p>
+  <div class="table-wrap">
     <table>
-      <thead>
-        <tr><th>Data</th><th>Dispositivo</th><th>Temperatura</th></tr>
-      </thead>
+      <thead><tr><th>Data</th><th>Dispositivo</th><th>Temperatura</th></tr></thead>
       <tbody id="tableBody"></tbody>
     </table>
-  </main>
-  <footer>
-    <p>© 2025 La Terrazza Bistrot & Molo Sedici - Castiglione della Pescaia</p>
-  </footer>
-  <script src="script.js"></script>
+  </div>
+</main>
+<footer><p>© La Terrazza Bistrot & Molo Sedici - Castiglione della Pescaia</p></footer>
+<script src="script.js"></script>
 </body>
 </html>
