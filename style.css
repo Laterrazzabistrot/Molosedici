@@ -1,77 +1,21 @@
-body {
-  font-family: sans-serif;
-  background-color: #fefef7;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-.logo {
-  max-width: 180px;
-  margin: 20px auto;
-}
-header h1 {
-  font-size: 1.2rem;
-  margin: 0 10px 20px;
-}
-.buttons {
-  margin-bottom: 20px;
-}
-button {
-  background-color: #2f4f4f;
-  color: white;
-  padding: 10px 15px;
-  margin: 5px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-button:hover {
-  background-color: #406060;
-}
-table {
-  margin: 0 auto 30px;
-  border-collapse: collapse;
-  width: 90%;
-  max-width: 700px;
-}
-th, td {
-  border: 1px solid #ccc;
-  padding: 10px;
-}
-thead {
-  background-color: #215c4f;
-  color: white;
-}
-footer {
-  margin: 30px 0;
-  font-size: 0.9rem;
-  color: #555;
-}
-@media print {
-  @page {
-    size: A4 landscape;
-    margin: 1cm;
-  }
-
-  .frigo-section {
-    page-break-after: always;
-  }
-
-  .congelatori-section {
-    page-break-before: always;
-  }
-
-  .no-print {
-    display: none !important;
-  }
-
-  body {
-    font-family: sans-serif;
-    font-size: 12px;
-  }
-
-  table {
-    page-break-inside: avoid;
-  }
-}
-
+body{font-family:Arial,sans-serif;background:#fefef7;margin:0;text-align:center;color:#24312d}
+.logo{max-width:180px;margin:20px auto}
+header h1{font-size:1.2rem;margin:0 auto 18px;max-width:850px;padding:0 12px}
+.criticita{color:#800020;font-weight:bold}
+.buttons{margin-bottom:16px}
+button{background:#2f4f4f;color:white;padding:10px 14px;margin:4px;border:0;border-radius:8px;cursor:pointer}
+button:hover{background:#406060}
+button[aria-pressed=true]{background:#215c4f;outline:2px solid #7ca89b;outline-offset:2px}
+button:disabled{opacity:.45;cursor:not-allowed}
+.period-controls{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:7px;margin:10px auto 12px;padding:10px;max-width:950px;background:#f1f4ed;border-radius:10px}
+.period-controls select{font-size:1rem;padding:9px;border:1px solid #9aaba2;border-radius:6px;background:white}
+.period-label{font-weight:bold;margin:10px}
+h2{font-size:1.15rem;padding:0 10px}
+#dataStatus{font-size:.9rem;color:#52655c}
+.table-wrap{overflow-x:auto;padding:0 10px}
+table{margin:0 auto 30px;border-collapse:collapse;width:100%;max-width:850px;background:white}
+th,td{border:1px solid #ccc;padding:10px;text-align:left}
+thead{background:#215c4f;color:white}
+footer{margin:30px 0;font-size:.9rem;color:#555}
+@media(max-width:560px){.period-controls{margin:10px}.period-controls button{flex:1 1 40%}th,td{padding:8px;font-size:.88rem}}
+@media print{@page{size:A4 landscape;margin:1cm}.buttons,.period-controls{display:none!important}body{font-size:12px}table{page-break-inside:auto}tr{break-inside:avoid}}
